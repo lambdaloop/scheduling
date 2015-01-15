@@ -6,8 +6,6 @@ from simanneal import Annealer
 import csv
 import numpy as np
 from pprint import pprint
-from scipy.stats import entropy
-import scipy
 
 n_slots = 9
 slot_num = [1, 1, 1,
