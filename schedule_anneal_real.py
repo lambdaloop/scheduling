@@ -15,7 +15,7 @@ out_name = '{0}_out.csv'.format(filename)
 
 
 # how many slots do we have?
-n_slots = 30 
+n_slots = 9
 
 # number the slots, to show the continuity for the objective function
 # for instance, if there are 5 slots, and 1-3 and 4-5 are continuous:
@@ -25,12 +25,7 @@ n_slots = 30
 # it's generally easier to come for 2 hours straight than 1 hour here, 1 hour there
 slot_num = [1, 1, 1,
             2, 2, 2,
-            3, 3, 3,
-            4, 4, 4,
-            5, 5, 6, 6,
-            7, 7, 8, 8,
-            9, 9, 10, 10, 10,
-            11, 11, 12, 12, 12]
+            3, 3, 3]
 
 # number of people minimum per slot, can be 0 for no minimum
 min_people = 1
