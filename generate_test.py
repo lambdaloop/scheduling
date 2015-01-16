@@ -10,7 +10,7 @@ writer = csv.DictWriter(f, fieldnames)
 
 writer.writeheader()
 
-n_people = 10
+n_people = 20
 n_slots = 9
 
 for i in range(n_people):

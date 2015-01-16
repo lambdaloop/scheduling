@@ -143,7 +143,7 @@ la = ScheduleLA(l_actual)
 la.updates = 200
 
 la.Tmax = 1000.0  # Max (starting) temperature
-la.Tmin = 1.0      # Min (ending) temperature
+la.Tmin = 10.0      # Min (ending) temperature
 # la.steps = 100000   # Number of iterations
 la.updates = 100   # Number of updates (by default an update prints to stdout)
 
@@ -153,6 +153,7 @@ la.anneal()
 
 pprint(la.state)
 pprint(np.sum(la.state, axis=0))
+print(la.energy())
 
 f = open('test_out.csv', 'w')
 fieldnames = ['name', 'slots']
