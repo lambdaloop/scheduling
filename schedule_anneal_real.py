@@ -31,7 +31,7 @@ name_dict = dict()
 
 for row in reader:
 
-    slots = int(row['slots'])
+    slots = int(row['num_slots'])
     
     if row['preferences'] == '':
         print("warning: {0} did not list any available slots, ignoring...".format(

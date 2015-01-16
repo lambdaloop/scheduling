@@ -5,7 +5,7 @@ import random
 
 f = open('test.csv', 'w')
 
-fieldnames = ['name', 'preferences', 'slots']
+fieldnames = ['name', 'preferences', 'num_slots']
 writer = csv.DictWriter(f, fieldnames)
 
 writer.writeheader()
@@ -24,7 +24,7 @@ for i in range(n_people):
     
     writer.writerow({
         'name': name,
-        'slots': slots,
+        'num_slots': slots,
         'preferences': ' '.join(map(str, pref))
     })
 
