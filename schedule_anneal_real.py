@@ -7,14 +7,34 @@ import csv
 import numpy as np
 from pprint import pprint
 
-n_slots = 9
+
+filename = 'test' #omit csv
+
+in_name = '{0}.csv'.format(filename)
+out_name = '{0}_out.csv'.format(filename)
+
+
+# how many slots do we have?
+n_slots = 30 
+
+# number the slots, to show the continuity for the objective function
+# for instance, if there are 5 slots, and 1-3 and 4-5 are continuous:
+# 1 1 1 2 2
 slot_num = [1, 1, 1,
             2, 2, 2,
-            3, 3, 3]
+            3, 3, 3,
+            4, 4, 4,
+            5, 5, 6, 6,
+            7, 7, 8, 8,
+            9, 9, 10, 10, 10,
+            11, 11, 12, 12, 12]
 
+# number of people minimum per slot, can be 0 for no minimum
 min_people = 1
 
-f = open('test.csv')
+## start computations
+
+f = open(in_name)
 reader = csv.DictReader(f)
 
 names = list()
@@ -73,19 +93,6 @@ l_possible = l_possible[1:]
 l_actual = l_actual[1:]
 
 l_possible_slots = [np.where(l_possible[i])[0] for i in range(n_people)]
-# l_possible = {
-#     0: [0, 1, 1],
-#     1: [1, 1, 1],
-#     2: [1, 0, 1],
-#     3: [0, 1, 1]
-# }
-
-# l_actual = {
-#     0: [1, 0, 0],
-#     1: [1, 1, 0],
-#     2: [1, 0, 0],
-#     3: [1, 0, 0]
-# }
 
 def compute_gaps(state):
     c = 0
@@ -140,12 +147,10 @@ class ScheduleLA(Annealer):
     
 la = ScheduleLA(l_actual)
 
-la.updates = 200
-
 la.Tmax = 1000.0  # Max (starting) temperature
-la.Tmin = 10.0      # Min (ending) temperature
+la.Tmin = 5.0      # Min (ending) temperature
 # la.steps = 100000   # Number of iterations
-la.updates = 100   # Number of updates (by default an update prints to stdout)
+la.updates = 200   # Number of updates (by default an update prints to stdout)
 
 # auto_schedule = la.auto(minutes=1)
 # la.set_schedule(auto_schedule)
@@ -155,7 +160,7 @@ pprint(la.state)
 pprint(np.sum(la.state, axis=0))
 print(la.energy())
 
-f = open('test_out.csv', 'w')
+f = open(out_name, 'w')
 fieldnames = ['name', 'slots']
 writer = csv.DictWriter(f, fieldnames)
 writer.writeheader()
