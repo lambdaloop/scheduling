@@ -20,6 +20,9 @@ n_slots = 30
 # number the slots, to show the continuity for the objective function
 # for instance, if there are 5 slots, and 1-3 and 4-5 are continuous:
 # 1 1 1 2 2
+# this is so the optimizer can prefer to assign continuous chunks of time
+# to lab assistants(like 2, 3 over 3, 5 for example above)
+# it's generally easier to come for 2 hours straight than 1 hour here, 1 hour there
 slot_num = [1, 1, 1,
             2, 2, 2,
             3, 3, 3,
