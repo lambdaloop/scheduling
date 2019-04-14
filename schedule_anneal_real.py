@@ -26,6 +26,8 @@ n_slots = 9
 slot_num = [1, 1, 1,
             2, 2, 2,
             3, 3, 3]
+# slot_num = [ 1, 1, 2, 2]
+
 
 # number of people minimum per slot, can be 0 for no minimum
 min_people = 1
@@ -115,8 +117,9 @@ class ScheduleLA(Annealer):
         slots = l_possible_slots[p]
         if len(slots) < 2:
             return
+
         
-        a, b = random.sample(slots, 2)
+        a, b = np.random.choice(slots, size=2, replace=False)
         self.state[p, a], self.state[p, b] = self.state[p, b], self.state[p, a]
 
     def energy(self):
@@ -148,8 +151,9 @@ la = ScheduleLA(l_actual)
 la.Tmax = 1000.0  # Max (starting) temperature
 la.Tmin = 5.0      # Min (ending) temperature
 # la.steps = 100000   # Number of iterations
-la.updates = 200   # Number of updates (by default an update prints to stdout)
+la.updates = 1000   # Number of updates (by default an update prints to stdout)
 
+print('')
 # auto_schedule = la.auto(minutes=1)
 # la.set_schedule(auto_schedule)
 la.anneal()
